@@ -1,0 +1,27 @@
+## YAML Template.
+---
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        native.searchLocations: file://${user.home}/CentralRepo/
+        git.uri: https://github.com/nagasrinu88/mc-config-repo.git
+
+server:
+  port: 8888
+management:
+  context_path: /admin
+  
+
+eureka:
+  instance:
+      instanceId: ${spring.application.name}:${random.value}
+      ## this should not be enabled on production
+      leaseRenewalIntervalInSeconds: 5
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#SPRING_PROFILES_ACTIVE: native
